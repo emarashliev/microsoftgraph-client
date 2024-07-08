@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C5EB40D2C3C752B00341836 /* MicrosoftgraphClient in Frameworks */ = {isa = PBXBuildFile; productRef = 6C5EB40C2C3C752B00341836 /* MicrosoftgraphClient */; };
 		6C89875A2C3C519200875F06 /* MicrosoftgraphClient in Frameworks */ = {isa = PBXBuildFile; productRef = 6C8987592C3C519200875F06 /* MicrosoftgraphClient */; };
 		6CE9FE612C3C029900121CDC /* ClientExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9FE602C3C029900121CDC /* ClientExampleApp.swift */; };
 		6CE9FE632C3C029900121CDC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9FE622C3C029900121CDC /* ContentView.swift */; };
@@ -53,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C5EB40D2C3C752B00341836 /* MicrosoftgraphClient in Frameworks */,
 				6CF9CE232C3C0C1B0024BEB0 /* MicrosoftgraphClient in Frameworks */,
 				6C89875A2C3C519200875F06 /* MicrosoftgraphClient in Frameworks */,
 			);
@@ -150,6 +152,7 @@
 			packageProductDependencies = (
 				6CF9CE222C3C0C1B0024BEB0 /* MicrosoftgraphClient */,
 				6C8987592C3C519200875F06 /* MicrosoftgraphClient */,
+				6C5EB40C2C3C752B00341836 /* MicrosoftgraphClient */,
 			);
 			productName = ClientExample;
 			productReference = 6CE9FE5D2C3C029900121CDC /* ClientExample.app */;
@@ -224,7 +227,7 @@
 			);
 			mainGroup = 6CE9FE542C3C029900121CDC;
 			packageReferences = (
-				6C8987582C3C519200875F06 /* XCLocalSwiftPackageReference "../microsoftgraph-client" */,
+				6C5EB40B2C3C752B00341836 /* XCLocalSwiftPackageReference "../microsoftgraph-client" */,
 			);
 			productRefGroup = 6CE9FE5E2C3C029900121CDC /* Products */;
 			projectDirPath = "";
@@ -595,13 +598,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		6C8987582C3C519200875F06 /* XCLocalSwiftPackageReference "../microsoftgraph-client" */ = {
+		6C5EB40B2C3C752B00341836 /* XCLocalSwiftPackageReference "../microsoftgraph-client" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = "../microsoftgraph-client";
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6C5EB40C2C3C752B00341836 /* MicrosoftgraphClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MicrosoftgraphClient;
+		};
 		6C8987592C3C519200875F06 /* MicrosoftgraphClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MicrosoftgraphClient;

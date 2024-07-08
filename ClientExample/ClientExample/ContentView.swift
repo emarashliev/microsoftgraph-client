@@ -27,8 +27,23 @@ struct ContentView: View {
         let client = MicrosoftgraphClient.createClient(bearerToken: bearerToken)
         do {
             let result = try await client.getUser(.init())
-            let body = try result.successful.body.json
-            print(body)
+            switch result {
+            case .successful(statusCode: let status, let body):
+                let json = try body.body.json
+                print(status)
+                print(json)
+            case .clientError(statusCode: let status, let error):
+                let json = try error.body.json
+                print("clientError - \(status)")
+                print(json)
+            case .serverError(statusCode: let status, let error):
+                let json = try error.body.json
+                print("serverError - \(status)")
+                print(json)
+            case .undocumented(statusCode: let status, let error):
+                print("undocumented - \(status)")
+                print(error)
+            }
         } catch {
             print(error.localizedDescription)
         }

@@ -48,6 +48,126 @@ public enum Servers {
 public enum Components {
     /// Types generated from the `#/components/schemas` section of the OpenAPI document.
     public enum Schemas {
+        /// - Remark: Generated from `#/components/schemas/Error`.
+        public struct _Error: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Error/error`.
+            public struct errorPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/Error/error/code`.
+                public var code: Swift.String
+                /// - Remark: Generated from `#/components/schemas/Error/error/message`.
+                public var message: Swift.String
+                /// - Remark: Generated from `#/components/schemas/Error/error/target`.
+                public var target: Swift.String?
+                /// - Remark: Generated from `#/components/schemas/Error/error/details`.
+                public var details: [Components.Schemas.ErrorDetails]?
+                /// - Remark: Generated from `#/components/schemas/Error/error/innerError`.
+                public var innerError: Components.Schemas.InnerError?
+                /// Creates a new `errorPayload`.
+                ///
+                /// - Parameters:
+                ///   - code:
+                ///   - message:
+                ///   - target:
+                ///   - details:
+                ///   - innerError:
+                public init(
+                    code: Swift.String,
+                    message: Swift.String,
+                    target: Swift.String? = nil,
+                    details: [Components.Schemas.ErrorDetails]? = nil,
+                    innerError: Components.Schemas.InnerError? = nil
+                ) {
+                    self.code = code
+                    self.message = message
+                    self.target = target
+                    self.details = details
+                    self.innerError = innerError
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case code
+                    case message
+                    case target
+                    case details
+                    case innerError
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/Error/error`.
+            public var error: Components.Schemas._Error.errorPayload
+            /// Creates a new `_Error`.
+            ///
+            /// - Parameters:
+            ///   - error:
+            public init(error: Components.Schemas._Error.errorPayload) {
+                self.error = error
+            }
+            public enum CodingKeys: String, CodingKey {
+                case error
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ErrorDetails`.
+        public struct ErrorDetails: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ErrorDetails/code`.
+            public var code: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ErrorDetails/message`.
+            public var message: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ErrorDetails/target`.
+            public var target: Swift.String?
+            /// Creates a new `ErrorDetails`.
+            ///
+            /// - Parameters:
+            ///   - code:
+            ///   - message:
+            ///   - target:
+            public init(
+                code: Swift.String,
+                message: Swift.String,
+                target: Swift.String? = nil
+            ) {
+                self.code = code
+                self.message = message
+                self.target = target
+            }
+            public enum CodingKeys: String, CodingKey {
+                case code
+                case message
+                case target
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/InnerError`.
+        public struct InnerError: Codable, Hashable, Sendable {
+            /// Request Id as tracked internally by the service
+            ///
+            /// - Remark: Generated from `#/components/schemas/InnerError/request-id`.
+            public var request_hyphen_id: Swift.String?
+            /// Client request Id as sent by the client application.
+            ///
+            /// - Remark: Generated from `#/components/schemas/InnerError/client-request-id`.
+            public var client_hyphen_request_hyphen_id: Swift.String?
+            /// Date when the error occured.
+            ///
+            /// - Remark: Generated from `#/components/schemas/InnerError/date`.
+            public var date: Swift.String?
+            /// Creates a new `InnerError`.
+            ///
+            /// - Parameters:
+            ///   - request_hyphen_id: Request Id as tracked internally by the service
+            ///   - client_hyphen_request_hyphen_id: Client request Id as sent by the client application.
+            ///   - date: Date when the error occured.
+            public init(
+                request_hyphen_id: Swift.String? = nil,
+                client_hyphen_request_hyphen_id: Swift.String? = nil,
+                date: Swift.String? = nil
+            ) {
+                self.request_hyphen_id = request_hyphen_id
+                self.client_hyphen_request_hyphen_id = client_hyphen_request_hyphen_id
+                self.date = date
+            }
+            public enum CodingKeys: String, CodingKey {
+                case request_hyphen_id = "request-id"
+                case client_hyphen_request_hyphen_id = "client-request-id"
+                case date
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/User`.
         public struct User: Codable, Hashable, Sendable {
             /// The user principal name (UPN) of the user. The UPN is an Internet-style sign-in name for the user based on the Internet standard RFC 822. By convention, this value should map to the user's email name. The general format is alias@domain, where the domain must be present in the tenant's collection of verified domains. This property is required when a user is created. The verified domains for the tenant can be accessed from the verifiedDomains property of organization.NOTE: This property can't contain accent characters. Only the following characters are allowed A - Z, a - z, 0 - 9, ' . - _ ! # ^ ~. For the complete list of allowed characters, see username policies. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, endsWith) and $orderby.
@@ -137,7 +257,36 @@ public enum Components {
     /// Types generated from the `#/components/requestBodies` section of the OpenAPI document.
     public enum RequestBodies {}
     /// Types generated from the `#/components/responses` section of the OpenAPI document.
-    public enum Responses {}
+    public enum Responses {
+        public struct error: Sendable, Hashable {
+            /// - Remark: Generated from `#/components/responses/error/content`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/components/responses/error/content/application\/json`.
+                case json(Components.Schemas._Error)
+                /// The associated value of the enum case if `self` is `.json`.
+                ///
+                /// - Throws: An error if `self` is not `.json`.
+                /// - SeeAlso: `.json`.
+                public var json: Components.Schemas._Error {
+                    get throws {
+                        switch self {
+                        case let .json(body):
+                            return body
+                        }
+                    }
+                }
+            }
+            /// Received HTTP response body
+            public var body: Components.Responses.error.Body
+            /// Creates a new `error`.
+            ///
+            /// - Parameters:
+            ///   - body: Received HTTP response body
+            public init(body: Components.Responses.error.Body) {
+                self.body = body
+            }
+        }
+    }
     /// Types generated from the `#/components/headers` section of the OpenAPI document.
     public enum Headers {}
 }
@@ -220,6 +369,52 @@ public enum Operations {
                     default:
                         try throwUnexpectedResponseStatus(
                             expectedStatus: "successful",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// error
+            ///
+            /// - Remark: Generated from `#/paths//me/get(getUser)/responses/4XX`.
+            ///
+            /// HTTP response code: `400...499 clientError`.
+            case clientError(statusCode: Swift.Int, Components.Responses.error)
+            /// The associated value of the enum case if `self` is `.clientError`.
+            ///
+            /// - Throws: An error if `self` is not `.clientError`.
+            /// - SeeAlso: `.clientError`.
+            public var clientError: Components.Responses.error {
+                get throws {
+                    switch self {
+                    case let .clientError(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "clientError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// error
+            ///
+            /// - Remark: Generated from `#/paths//me/get(getUser)/responses/5XX`.
+            ///
+            /// HTTP response code: `500...599 serverError`.
+            case serverError(statusCode: Swift.Int, Components.Responses.error)
+            /// The associated value of the enum case if `self` is `.serverError`.
+            ///
+            /// - Throws: An error if `self` is not `.serverError`.
+            /// - SeeAlso: `.serverError`.
+            public var serverError: Components.Responses.error {
+                get throws {
+                    switch self {
+                    case let .serverError(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "serverError",
                             response: self
                         )
                     }
