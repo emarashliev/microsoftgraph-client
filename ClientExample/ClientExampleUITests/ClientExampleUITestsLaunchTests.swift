@@ -1,13 +1,13 @@
 //
-//  MicrosoftgraphClientUITestsLaunchTests.swift
-//  MicrosoftgraphClientUITests
+//  ClientExampleUITestsLaunchTests.swift
+//  ClientExampleUITests
 //
-//  Created by Emil Marashliev on 29.06.24.
+//  Created by Emil Marashliev on 8.07.24.
 //
 
 import XCTest
 
-final class MicrosoftgraphClientUITestsLaunchTests: XCTestCase {
+final class ClientExampleUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

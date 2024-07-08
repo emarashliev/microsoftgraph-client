@@ -1,0 +1,67 @@
+openapi: '3.1.0'
+info:
+  title: microsoft.graph
+  version: 1.0.0
+servers:
+  - url: https://graph.microsoft.com/v1.0
+    description: microsoft.graph
+paths:
+  /me:
+    description: Provides operations to manage the user singleton.
+    get:
+      summary: Get a user
+      description: 'Retrieve the properties and relationships of user object. This operation returns by default only a subset of the more commonly used properties for each user. These default properties are noted in the Properties section. To get properties that are not returned by default, do a GET operation for the user and specify the properties in a $select OData query option. Because the user resource supports extensions, you can also use the GET operation to get custom properties and extension data in a user instance. Customers through Microsoft Entra ID for customers can also use this API operation to retrieve their details.'
+      externalDocs:
+        description: Find more info here
+        url: https://learn.microsoft.com/graph/api/user-get?view=graph-rest-1.0
+      operationId: getUser
+      responses:
+        2XX:
+          description: Retrieved entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        userPrincipalName:
+          type: string
+          description: 'The user principal name (UPN) of the user. The UPN is an Internet-style sign-in name for the user based on the Internet standard RFC 822. By convention, this value should map to the user''s email name. The general format is alias@domain, where the domain must be present in the tenant''s collection of verified domains. This property is required when a user is created. The verified domains for the tenant can be accessed from the verifiedDomains property of organization.NOTE: This property can''t contain accent characters. Only the following characters are allowed A - Z, a - z, 0 - 9, '' . - _ ! # ^ ~. For the complete list of allowed characters, see username policies. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, endsWith) and $orderby.'
+          nullable: true
+        displayName:
+          type: string
+          description: 'The name displayed in the address book for the user. This value is usually the combination of the user''s first name, middle initial, and family name. This property is required when a user is created and it can''t be cleared during updates. Maximum length is 256 characters. Returned by default. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values), $orderby, and $search.'
+          nullable: true
+        surname:
+          type: string
+          description: 'The user''s surname (family name or last name). Maximum length is 64 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values).'
+          nullable: true
+        givenName:
+          type: string
+          description: 'If the entity is a person, this is the person''s given name (first name).'
+          nullable: true
+        email:
+          type: string
+          description: An email for this entity.
+          nullable: true
+        preferredLanguage:
+          type: string
+          description: 'The preferred language for the user. The preferred language format is based on RFC 4646. The name is a combination of an ISO 639 two-letter lowercase culture code associated with the language, and an ISO 3166 two-letter uppercase subculture code associated with the country or region. Example: ''en-US'', or ''es-ES''. Returned by default. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values)'
+          nullable: true
+        mobilePhone:
+          type: string
+          description: Mobile phone number of the contact.
+          nullable: true
+        jobTitle:
+          type: string
+          description: The contact’s job title.
+          nullable: true
+        businessPhones:
+          type: array
+          items:
+            type: string
+            nullable: true
+          description: The contact's business phone numbers.

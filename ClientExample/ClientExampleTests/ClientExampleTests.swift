@@ -1,14 +1,14 @@
 //
-//  MicrosoftgraphClientTests.swift
-//  MicrosoftgraphClientTests
+//  ClientExampleTests.swift
+//  ClientExampleTests
 //
-//  Created by Emil Marashliev on 29.06.24.
+//  Created by Emil Marashliev on 8.07.24.
 //
 
 import XCTest
-@testable import MicrosoftgraphClient
+@testable import ClientExample
 
-final class MicrosoftgraphClientTests: XCTestCase {
+final class ClientExampleTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
