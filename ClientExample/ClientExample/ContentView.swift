@@ -7,13 +7,18 @@
 
 import SwiftUI
 import MicrosoftgraphClient
+import MSAL
 
 struct ContentView: View {
     var body: some View {
         VStack {
             Button {
                 Task {
-                    await onButtonPressed()
+                    do {
+                        try await onButtonPressed()
+                    } catch {
+                        print(error)
+                    }
                 }
             } label: {
                 Text("Press me 😏")
@@ -21,9 +26,9 @@ struct ContentView: View {
         }
         .padding()
     }
-    
-    func onButtonPressed() async {
-        let bearerToken = ProcessInfo.processInfo.environment["BEARER_TOKEN"]!
+
+    func onButtonPressed() async throws {
+        let bearerToken = try await getToken()
         let client = MicrosoftgraphClient.createClient(bearerToken: bearerToken)
         do {
             let result = try await client.getUser(.init())
@@ -47,6 +52,36 @@ struct ContentView: View {
         } catch {
             print(error.localizedDescription)
         }
+    }
+
+    func getToken() async throws -> String {
+        let clientID = "" // Add your client ID here
+        let scopes: [String] = ["user.read"]
+
+        let config = MSALPublicClientApplicationConfig(clientId: clientID)
+        let application = try MSALPublicClientApplication(configuration: config)
+
+        guard let topController = getTopController() else { throw "topController is nil" }
+
+        let webviewParameters = MSALWebviewParameters(authPresentationViewController: topController)
+        let interactiveParameters = MSALInteractiveTokenParameters(scopes: scopes, webviewParameters: webviewParameters)
+        let result = try await application.acquireToken(with: interactiveParameters)
+
+        return result.accessToken
+    }
+
+    func getTopController() -> UIViewController? {
+        var topController = UIApplication
+            .shared
+            .connectedScenes
+            .compactMap { ($0 as? UIWindowScene)?.keyWindow }
+            .last?
+            .rootViewController
+
+        while let presentedViewController = topController?.presentedViewController {
+            topController = presentedViewController
+        }
+        return topController
     }
 }
 
